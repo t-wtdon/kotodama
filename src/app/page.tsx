@@ -1,95 +1,101 @@
-import Image from "next/image";
-import styles from "./page.module.css";
+"use client";
 
-export default function Home() {
+import { useState } from "react";
+
+const styles = ["映画風", "漫画風", "古典文学風", "占い風", "偉人風"];
+
+export const Home = () => {
+  const [name, setName] = useState("");
+  const [keywords, setKeywords] = useState(["", "", ""]);
+  const [style, setStyle] = useState(styles[0]);
+  const [output, setOutput] = useState("");
+  const [loading, setLoading] = useState(false);
+
+  const handleKeywordChange = (index: number, value: string) => {
+    const newKeywords = [...keywords];
+    newKeywords[index] = value;
+    setKeywords(newKeywords);
+  };
+
+  const handleSubmit = async () => {
+    setLoading(true);
+    setOutput("");
+
+    // キーワードは空のものを除いて絞る
+    const filteredKeywords = keywords.filter((k) => k.trim() !== "");
+
+    try {
+      const res = await fetch("/api/chat", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ name, keywords: filteredKeywords, style }),
+      });
+
+      const data = await res.json();
+      setOutput(data.message);
+    } catch {
+      setOutput("エラーが発生しました");
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
-    <div className={styles.page}>
-      <main className={styles.main}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol>
-          <li>
-            Get started by editing <code>src/app/page.tsx</code>.
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+    <main style={{ padding: 32 }}>
+      <h1>🧠 ことだま生成器</h1>
 
-        <div className={styles.ctas}>
-          <a
-            className={styles.primary}
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className={styles.logo}
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-            className={styles.secondary}
-          >
-            Read our docs
-          </a>
-        </div>
-      </main>
-      <footer className={styles.footer}>
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
+      <label>
+        名前（必須）
+        <br />
+        <input
+          type="text"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+          style={{ width: "100%", marginBottom: 12 }}
+        />
+      </label>
+
+      <label>
+        キーワード（任意、最大3つ）
+        <br />
+        {keywords.map((k, i) => (
+          <input
+            key={i}
+            type="text"
+            value={k}
+            onChange={(e) => handleKeywordChange(i, e.target.value)}
+            style={{ width: "100%", marginBottom: 8 }}
           />
-          Learn
-        </a>
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
+        ))}
+      </label>
+
+      <label>
+        名言スタイル選択
+        <br />
+        <select
+          value={style}
+          onChange={(e) => setStyle(e.target.value)}
+          style={{ width: "100%", marginBottom: 16 }}
         >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
+          {styles.map((s) => (
+            <option key={s} value={s}>
+              {s}
+            </option>
+          ))}
+        </select>
+      </label>
+
+      <button
+        onClick={handleSubmit}
+        disabled={loading || !name.trim()}
+        style={{ marginBottom: 16 }}
+      >
+        {loading ? "生成中..." : "名言を作る"}
+      </button>
+
+      <div style={{ whiteSpace: "pre-wrap" }}>{output}</div>
+    </main>
   );
-}
+};
+
+export default Home;
