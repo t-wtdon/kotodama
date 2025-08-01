@@ -25,6 +25,8 @@
   right: 15px;
   width: 26px;
   font-size: 26px;
+  background: 0;
+  border: 0;
 }
 .title {
   font-size: 24px;
@@ -40,7 +42,7 @@
   display: flex;
   justify-content: center;
   gap: 12px;
-  margin-top: 16px;
+  margin-top: 28px;
 }
 
 .shareX,
