@@ -11,19 +11,26 @@ function createPrompt(name: string, keywords: string[], style: string) {
     ? keywords.join("、")
     : "特にキーワードはありません";
 
+  // 名前が空なら匿名に置き換え
+  const displayName = name.trim();
+
+  const baseInstruction = `以下の条件を必ず守ってください。
+- 出力する文章の最後に必ず「- ${displayName}」をつけてください。
+`;
+
   switch (style) {
     case "映画風":
-      return `名前は${name}さん。キーワードは${kwText}。これらをもとに、映画の予告編のセリフのような短くて印象的な「今日の名言」を作ってください。`;
+      return `${baseInstruction}名前は${displayName}さん。キーワードは${kwText}。これらをもとに、映画の予告編のセリフのような短くて印象的な「今日の名言」を作ってください。`;
     case "漫画風":
-      return `名前は${name}さん。キーワードは${kwText}。漫画の吹き出しでキャラクターが言いそうな、ちょっとコミカルな「今日の名言」を作ってください。`;
+      return `${baseInstruction}名前は${displayName}さん。キーワードは${kwText}。漫画の吹き出しでキャラクターが言いそうな、ちょっとコミカルな「今日の名言」を作ってください。`;
     case "古典文学風":
-      return `名前は${name}さん。キーワードは${kwText}。夏目漱石や芥川龍之介の文体を真似した、格調高い「今日の名言」を作ってください。`;
+      return `${baseInstruction}名前は${displayName}さん。キーワードは${kwText}。夏目漱石や芥川龍之介の文体を真似した、格調高い「今日の名言」を作ってください。`;
     case "占い風":
-      return `名前は${name}さん。キーワードは${kwText}。今日の運勢やアドバイスを名言風にして作ってください。`;
+      return `${baseInstruction}名前は${displayName}さん。キーワードは${kwText}。今日の運勢やアドバイスを名言風にして作ってください。`;
     case "偉人風":
-      return `名前は${name}さん。キーワードは${kwText}。歴史上の偉人が現代に言いそうな「今日の名言」を作ってください。`;
+      return `${baseInstruction}名前は${displayName}さん。キーワードは${kwText}。歴史上の偉人が現代に言いそうな「今日の名言」を作ってください。`;
     default:
-      return `名前は${name}さん。キーワードは${kwText}。これらをもとに短くて前向きな「今日の名言」を作ってください。`;
+      return `${baseInstruction}名前は${displayName}さん。キーワードは${kwText}。これらをもとに短くて前向きな「今日の名言」を作ってください。`;
   }
 }
 
