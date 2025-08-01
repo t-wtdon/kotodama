@@ -4,7 +4,7 @@ import { useState } from "react";
 
 const styles = ["映画風", "漫画風", "古典文学風", "占い風", "偉人風"];
 
-export const Home = () => {
+const Home = () => {
   const [name, setName] = useState("");
   const [keywords, setKeywords] = useState(["", "", ""]);
   const [style, setStyle] = useState(styles[0]);
@@ -21,7 +21,6 @@ export const Home = () => {
     setLoading(true);
     setOutput("");
 
-    // キーワードは空のものを除いて絞る
     const filteredKeywords = keywords.filter((k) => k.trim() !== "");
 
     try {
@@ -42,7 +41,7 @@ export const Home = () => {
 
   return (
     <main style={{ padding: 32 }}>
-      <h1>🧠 ことだま生成器</h1>
+      <h1>🧠 AI 名言メーカー</h1>
 
       <label>
         名前（必須）
