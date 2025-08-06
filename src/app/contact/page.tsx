@@ -1,4 +1,4 @@
-export default function ContactPage() {
+export default function TermPage() {
   return (
     <div>
       <h1>このサイトについて</h1>
