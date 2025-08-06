@@ -1,0 +1,76 @@
+.c-modal {
+  font-family: "DotGothic16", sans-serif;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+
+  &__inner {
+    padding: 28px 16px;
+    background-color: white;
+    padding: 40px 16px;
+    border-radius: 8px;
+    width: 100%;
+    max-width: calc(100% - 32px);
+    position: relative;
+  }
+  &__close {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    width: 26px;
+    font-size: 26px;
+    background: 0;
+    border: 0;
+  }
+  &__title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+  &__text {
+    font-size: 18px;
+    font-weight: bold;
+  }
+  &__buttons {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 28px;
+  }
+
+  &__shareX,
+  &__copy {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 6px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s;
+  }
+
+  &__shareX {
+    background-color: #1da1f2;
+    color: white;
+  }
+
+  &__copy {
+    background-color: #c13584;
+    color: white;
+  }
+
+  &__shareX:hover {
+    background-color: #0d8de1;
+  }
+
+  &__copy:hover {
+    background-color: #a52a6a;
+  }
+}

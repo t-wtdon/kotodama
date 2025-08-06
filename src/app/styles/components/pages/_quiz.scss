@@ -1,33 +1,35 @@
-.main {
+.p-quiz {
   padding: 40px 0;
+  font-family: "DotGothic16", sans-serif;
 }
-.title {
+
+.p-quiz__title {
   font-size: 40px;
   text-align: center;
 }
-.inner {
+.p-quiz__inner {
   padding: 0 16px;
 }
-.label {
+.p-quiz__label {
   display: block;
   margin: 20px 0;
   font-size: 20px;
   font-weight: bold;
 }
-.input {
+.p-quiz__input {
   margin-top: 12px;
   font-size: 20px;
   padding: 8px;
   border-radius: 8px;
 }
-.select {
+.p-quiz__select {
   margin-top: 12px;
   font-size: 20px;
   padding: 8px;
   border-radius: 8px;
   border: 2px solid #000;
 }
-.button {
+.p-quiz__button {
   padding: 12px;
   border-radius: 8px;
   width: 100%;
@@ -37,7 +39,7 @@
   font-size: 18px;
   font-weight: bold;
 }
-.ask {
+.p-quiz__ask {
   margin-left: 6px;
   color: #ff0000;
 }

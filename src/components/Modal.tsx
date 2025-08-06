@@ -1,5 +1,4 @@
 import React from "react";
-import css from "./modal.module.css";
 
 type ModalProps = {
   isOpen: boolean;
@@ -25,19 +24,19 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose, children }) => {
   };
 
   return (
-    <div className={css.modal} onClick={onClose}>
-      <div className={css.inner} onClick={(e) => e.stopPropagation()}>
-        <button className={css.close} onClick={onClose}>
+    <div className="c-modal" onClick={onClose}>
+      <div className="c-modal__inner" onClick={(e) => e.stopPropagation()}>
+        <button className="c-modal__close" onClick={onClose}>
           ×
         </button>
-        <h2 className={css.title}>ことだまが生成されたよ</h2>
-        <p className={css.text}>{children}</p>
+        <h2 className="c-modal__title">ことだまが生成されたよ</h2>
+        <p className="c-modal__text">{children}</p>
 
-        <div className={css.buttons}>
-          <button className={css.shareX} onClick={shareToX}>
+        <div className="c-modal__buttons">
+          <button className="c-modal__shareX" onClick={shareToX}>
             Xでシェア
           </button>
-          <button className={css.copy} onClick={copyToClipboard}>
+          <button className="c-modal__copy" onClick={copyToClipboard}>
             Instagram用にコピー
           </button>
         </div>

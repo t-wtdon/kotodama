@@ -1,0 +1,16 @@
+.p-top {
+  &__mv {
+    padding: 20px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  }
+  &__mvText {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    font-size: 28px;
+    font-weight: bold;
+    color: #fff;
+    box-sizing: border-box;
+  }
+}
