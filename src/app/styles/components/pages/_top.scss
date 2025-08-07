@@ -1,16 +1,111 @@
 .p-top {
-  &__mv {
-    padding: 20px;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  // 共通
+  &__heading {
+    font-size: 24px;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 24px;
   }
-  &__mvText {
+  &__text {
+    font-size: 18px;
+    line-height: 1.6;
+    letter-spacing: -0.05em;
+  }
+
+  // MVセクション
+  &__mv {
     display: flex;
     align-items: center;
     justify-content: center;
+    padding: 20px 16px;
     height: 100vh;
-    font-size: 28px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    box-sizing: border-box;
+  }
+  &__mvInner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  &__mvText {
+    font-size: 26px;
     font-weight: bold;
     color: #fff;
-    box-sizing: border-box;
+  }
+  &__button {
+    margin-top: 50px;
+    background: #fff;
+    color: #764ba2;
+    font-size: 18px;
+    font-weight: bold;
+    padding: 8px 40px;
+    border-radius: 9999px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    border: none;
+    cursor: pointer;
+  }
+
+  // できることセクション
+  &__features {
+    position: relative;
+    background-color: #111;
+    color: #ccc;
+    padding: 40px 16px;
+    overflow: hidden;
+  }
+  &__featureList {
+    display: flex;
+    flex-direction: column;
+    gap: 20px 0;
+    list-style: none;
+    margin: 60px 0 20px;
+  }
+  &__featureItem {
+    width: 100%;
+    border-radius: 10px;
+    text-align: center;
+    padding: 24px 16px;
+    box-shadow: 0 2px 10px rgba(255, 255, 255, 0.2);
+  }
+  &__featureIcon {
+    font-size: 120px;
+  }
+  &__featureText {
+    font-size: 20px;
+    font-weight: bold;
+    margin-top: 16px;
+  }
+
+  // サービスセクション
+  &__service {
+    background-color: #000;
+    color: #fff;
+    padding: 40px 16px;
+  }
+  &__serviceList {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    list-style: none;
+    margin: 40px 0;
+  }
+  &__serviceItem {
+    width: 100%;
+    border-radius: 10px;
+    text-align: center;
+    padding: 24px 16px;
+    box-shadow: 0 2px 10px rgba(255, 255, 255, 0.2);
+  }
+  &__serviceLink {
+    width: 100%;
+  }
+  &__serviceImg {
+    width: 100%;
+    margin-bottom: 24px;
+  }
+  &__serviceName {
+    font-size: 18px;
+    font-weight: bold;
   }
 }
